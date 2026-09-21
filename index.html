@@ -420,10 +420,28 @@ try {
 Харизма: (print: $cha) (if: $cha &lt; 5 and $pointsLeft &gt; 0)[(link: &quot;+&quot;)[(set: $cha to $cha + 1)(set: $pointsLeft to $pointsLeft - 1)(replace: ?statsPanel)[(display: &quot;Панель характеристик&quot;)]]] (if: $cha &gt; 1)[(link: &quot;−&quot;)[(set: $cha to $cha - 1)(set: $pointsLeft to $pointsLeft + 1)(replace: ?statsPanel)[(display: &quot;Панель характеристик&quot;)]]]\
 \
 Интеллект: (print: $int) (if: $int &lt; 5 and $pointsLeft &gt; 0)[(link: &quot;+&quot;)[(set: $int to $int + 1)(set: $pointsLeft to $pointsLeft - 1)(replace: ?statsPanel)[(display: &quot;Панель характеристик&quot;)]]] (if: $int &gt; 1)[(link: &quot;−&quot;)[(set: $int to $int - 1)(set: $pointsLeft to $pointsLeft + 1)(replace: ?statsPanel)[(display: &quot;Панель характеристик&quot;)]]]\
-\
+
 (if: $pointsLeft is 0)[
 Комментарий (необязательно):
 &lt;input type=&quot;text&quot; id=&quot;statComment&quot; class=&quot;id-input&quot; placeholder=&quot;Введите комментарий&quot;&gt;
+
+&lt;script&gt;
+try {
+    var commentInput = document.getElementById(&quot;statComment&quot;);
+    if (commentInput) {
+        commentInput.oninput = function() {
+            window.savedComment = this.value;
+        };
+    }
+} catch (e) {
+    console.log(&quot;Ошибка привязки комментария:&quot;, e);
+}
+&lt;/script&gt;
+
+
+
+
+
 
 
 
@@ -448,10 +466,6 @@ try {
 
 
 (link: &quot;Подтвердить&quot;)[
-    &lt;script&gt;
-    var c = document.getElementById(&quot;statComment&quot;);
-    window.savedComment = c ? c.value : &quot;&quot;;
-    &lt;/script&gt;
     (goto: &quot;Характеристики подтверждены&quot;)
 ]
 ](else:)[Распределите все очки, чтобы продолжить.]</tw-passagedata><tw-passagedata pid="8" name="Приступить" tags="" position="275,525" size="100,100">(set: $str to 1)\
