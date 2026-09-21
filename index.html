@@ -371,7 +371,7 @@ try {
     var intl = document.getElementById(&quot;statInt&quot;).textContent;
 
     var commentInput = document.getElementById(&quot;statComment&quot;);
-    var comment = commentInput ? commentInput.value : &quot;&quot;;
+    var comment = window.savedComment || &quot;&quot;;
 
     var message =
         &quot;Игрок: &quot; + name + &quot;\n&quot; +
@@ -447,9 +447,13 @@ try {
 
 
 
-
-(link: &quot;Подтвердить&quot;)[(goto: &quot;Характеристики подтверждены&quot;)]
-](else:)[Распределите все очки, чтобы продолжить.]</tw-passagedata><tw-passagedata pid="8" name="Приступить" tags="" position="275,525" size="100,100">(set: $str to 1)\
+(link: &quot;Подтвердить&quot;)[
+    &lt;script&gt;
+    var c = document.getElementById(&quot;statComment&quot;);
+    window.savedComment = c ? c.value : &quot;&quot;;
+    &lt;/script&gt;
+    (goto: &quot;Характеристики подтверждены&quot;)
+]</tw-passagedata><tw-passagedata pid="8" name="Приступить" tags="" position="275,525" size="100,100">(set: $str to 1)\
 (set: $dex to 1)\
 (set: $end to 1)\
 (set: $body to 1)\
